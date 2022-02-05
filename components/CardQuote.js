@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Card, Icon } from 'react-native-elements';
 
-function CardQuote({quote, author}) {
+function CardQuote(props) {
   return (
     <View style={styles.container}>
-       <Card containerStyle={{ marginTop: 15 }}>
+       <Card containerStyle={{ marginTop: 15, padding: 20 }}>
           <Text style={styles.fonts} h1>
-            {quote}
+            {props.quote}
           </Text>
-          <Text style={styles.fonts}>{author}</Text>
+          <Text style={styles.fonts}>{props.author}</Text>
           <Card.Divider />
         </Card>
     </View>
@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   fonts: {
-    marginBottom: 8,
+    marginBottom: 15,
+    textAlign: 'center'
   }
 });
 

@@ -4,8 +4,8 @@ import tw from "tailwind-react-native-classnames";
 import AddQuote from "../components/AddQuote";
 import Header from "../components/Header";
 import Sentiment from "sentiment";
-
-import { Text, Card, Icon } from 'react-native-elements';
+import { Text} from 'react-native-elements';
+import CardQuote from "../components/CardQuote";
 
 function HomeScreen() {
   const url = "https://type.fit/api/quotes";
@@ -22,17 +22,9 @@ function HomeScreen() {
       <Text>Your Sentiment Score is : {string.score}</Text>
       
 
-      <View style={styles.container}>
-        <Card containerStyle={{ marginTop: 15, padding: 20 }}>
-          <Text style={styles.fonts} h1>
-            A very random quote
-          </Text>
-          <Text style={styles.fonts}>random author</Text>
-          <Card.Divider />
-        </Card>
-      </View>
+     <CardQuote quote="hi mom" author="bob" />
 
-      <AddQuote />
+      <AddQuote  />
     </SafeAreaView>
   );
 }
