@@ -1,45 +1,56 @@
-import React,{useState, useEffect} from "react";
-import { SafeAreaView, View, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import tw from "tailwind-react-native-classnames";
 import AddQuote from "../components/AddQuote";
 import Header from "../components/Header";
-import Sentiment from "sentiment";
 import CardQuote from "../components/CardQuote";
 
-
 function HomeScreen() {
-  // const url = "https://type.fit/api/quotes";
-  const url2= "https://favqs.com/api/qotd"
+  const url = "https://type.fit/api/quotes";
+  const [quotes, setQuotes] = useState([]);
 
-  const [quote, setQuote] = useState("")
-  const [author, setAuthor] = useState("")
+  const getQuotes = async () => {
+    const res = await fetch(url);
+    const data = await res.json();
+    setQuotes(data);
+  };
 
-  const sentiment = new Sentiment();
-  const analysis = sentiment.analyze(quote);
-  //console.log(string);
-
-  const getQuotes = async () =>{
-    const res = await fetch(url2);
-    const data =  await res.json();
-    setQuote(data.quote.body);
-    setAuthor(data.quote.author)
-    //console.log(data);
-  }
-
-  useEffect(()=>{
+  useEffect(() => {
     getQuotes();
-  },[]);
+  }, []);
+
+  const renderQuote = ({ item: { text, author } }) => {
+    return (
+      <CardQuote
+        style={styles.container}
+        quote={text}
+        author={author}
+        sentimentValue={text}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={tw`bg-gray-100 h-full`}>
       <View style={tw`p-16 bg-gray-100`}>
         <Header title="Quotes of the Day" />
       </View>
-      
 
-     <CardQuote style={styles.container} quote={quote} author={author} sentimentValue={analysis.score} />
+      {/* Flatlist better than ScrollView in terms of performance
+        as it loads lazily
+      */}
+      <FlatList
+        data={quotes}
+        renderItem={renderQuote}
+        keyExtractor={(quote, index) => index.toString()}
+      />
 
-      <AddQuote  />
+      <AddQuote />
     </SafeAreaView>
   );
 }
@@ -50,6 +61,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignContent:'center'
-  }
+    alignContent: "center",
+  },
 });

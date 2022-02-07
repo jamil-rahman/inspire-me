@@ -3,9 +3,13 @@ import { View, StyleSheet } from "react-native";
 import { Text, Card, Icon } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import tw from "tailwind-react-native-classnames";
-import Sentiment from "./Sentiment"
+import SentimentComponent from "./SentimentComponent";
+import Sentiment from "sentiment";
 
 function CardQuote(props) {
+  const sentiment = new Sentiment();
+  const analysis = sentiment.analyze(props.quote)
+
   return (
     <View style={styles.container}>
       <Card containerStyle={{ marginTop: 15, padding: 20 }}>
@@ -18,7 +22,7 @@ function CardQuote(props) {
           <TouchableOpacity>
             <Icon name="heart" type="font-awesome" color="#000" />
           </TouchableOpacity>
-          <Sentiment sentimentValue={props.sentimentValue} />
+          <SentimentComponent sentimentValue={analysis.score} />
         </View>
       </Card>
     </View>
