@@ -12,6 +12,7 @@ import CardQuote from "../components/CardQuote";
 
 function HomeScreen() {
   const url = "https://type.fit/api/quotes";
+//  const url2 = "https://zenquotes.io/api/quotes"; //limited api calls per minute
   const [quotes, setQuotes] = useState([]);
 
   const getQuotes = async () => {

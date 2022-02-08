@@ -12,7 +12,7 @@ function CardQuote(props) {
 
   return (
     <View style={styles.container}>
-      <Card containerStyle={{ marginTop: 15, padding: 20 }}>
+      <Card containerStyle={{ marginTop: 15, padding: 20, borderRadius: 50/2 }}>
         <Text style={styles.fonts} h1>
           {props.quote}
         </Text>

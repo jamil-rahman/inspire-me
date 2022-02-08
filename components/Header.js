@@ -1,6 +1,6 @@
 import React from 'react';
 import tw from 'tailwind-react-native-classnames'
-import {Text, StyleSheet} from 'react-native'
+import {Text} from 'react-native'
 function Header({title}) {
   return (
       <>

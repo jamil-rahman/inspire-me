@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import tw from 'tailwind-react-native-classnames'
 
 function FavoritesScreen() {
