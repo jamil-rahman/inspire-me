@@ -30,16 +30,6 @@ function CardQuote(props) {
   const saveQuote = async () => {
     const quote = { savedQuote: props.quote, savedAuthor: props.author };
 
-    // try {
-    //   await AsyncStorage.setItem("quote", JSON.stringify(quote));
-    //   // await AsyncStorage.setItem("author", JSON.stringify(author));
-
-    //   notifyMessage('Quote Saved!');
-    //   console.log(quote);
-    //   //console.log(author);
-    // } catch (err) {
-    //   console.log(err);
-    // }
     AsyncStorage.getItem("quote").then((favorites) => {
       favorites = favorites == null ? [] : JSON.parse(favorites);
       favorites.push(quote);
