@@ -27,20 +27,31 @@ function FavoritesScreen() {
   const getSavedQuotes = async () => {
     try {
       const quotes = await AsyncStorage.getItem("quote");
-      return quotes != null ? setSavedQuotes(JSON.parse(quotes)) : null;
-    } catch (err) {
+        setSavedQuotes(JSON.parse(quotes)
+    )} catch (err) {
       console.log(err);
     }
   };
   
   useEffect(()=>{
     getSavedQuotes()
-  }, [])
+    //clearAll();
+  }, [savedquotes])
 
-  console.log(savedquotes);
+
+
+  const clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+    }
+  
+    console.log('Done.')
+  }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={tw`bg-gray-100 h-full`}>
 
 
       <View style={tw`p-16 bg-gray-100`}>
@@ -51,6 +62,7 @@ function FavoritesScreen() {
         data={savedquotes}
         renderItem={renderQuote}
         keyExtractor={(quote, index) => index.toString()}
+        contentContainerStyle={{ paddingBottom: 20 }}
       />
 
 

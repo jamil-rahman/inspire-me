@@ -1,5 +1,12 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ToastAndroid, Platform, AlertIOS, } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ToastAndroid,
+  Platform,
+  AlertIOS,
+} from "react-native";
 import { Text, Card, Icon } from "react-native-elements";
 import tw from "tailwind-react-native-classnames";
 import SentimentComponent from "./SentimentComponent";
@@ -13,26 +20,33 @@ function CardQuote(props) {
   const analysis = sentiment.analyze(props.quote);
 
   const notifyMessage = (message) => {
-    if (Platform.OS === 'android') {
-      ToastAndroid.show(message, ToastAndroid.SHORT)
+    if (Platform.OS === "android") {
+      ToastAndroid.show(message, ToastAndroid.SHORT);
     } else {
       AlertIOS.alert(message);
     }
-  }
+  };
 
   const saveQuote = async () => {
-    const quote = [{ savedQuote: props.quote, savedAuthor: props.author }];
+    const quote = { savedQuote: props.quote, savedAuthor: props.author };
 
-    try {
-      await AsyncStorage.setItem("quote", JSON.stringify(quote));
-      // await AsyncStorage.setItem("author", JSON.stringify(author));
+    // try {
+    //   await AsyncStorage.setItem("quote", JSON.stringify(quote));
+    //   // await AsyncStorage.setItem("author", JSON.stringify(author));
 
+    //   notifyMessage('Quote Saved!');
+    //   console.log(quote);
+    //   //console.log(author);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    AsyncStorage.getItem("quote").then((favorites) => {
+      favorites = favorites == null ? [] : JSON.parse(favorites);
+      favorites.push(quote);
       notifyMessage('Quote Saved!');
-      console.log(quote);
-      //console.log(author);
-    } catch (err) {
-      console.log(err);
-    }
+      return AsyncStorage.setItem("quote", JSON.stringify(favorites));
+    });
+    //console.log(quote);
   };
   return (
     <View style={styles.container}>

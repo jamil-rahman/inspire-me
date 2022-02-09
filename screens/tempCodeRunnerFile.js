@@ -1,1 +1,1 @@
-      console.log(quotes);
+     // console.log(quotes);
