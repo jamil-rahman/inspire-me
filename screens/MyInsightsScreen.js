@@ -29,21 +29,23 @@ function MyInsightsScreen() {
     }
   };
 
-  //clear all data from async storage
-  const clearAll = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch (e) {
-      // clear error
-    }
-    console.log("Done.");
-  };
-
   useEffect(()=>{
     getSavedQuotes()
     //clearAll();
   }, [savedquotes])
 
+
+  //clear all data from async storage
+  const clearAll = async () => {
+    try {
+      await AsyncStorage.clear();
+    } catch (e) {
+      console.log(e)
+    }
+    console.log("Done.");
+  };
+
+ 
 
   return (
     <SafeAreaView style={tw`bg-gray-100 h-full`}>

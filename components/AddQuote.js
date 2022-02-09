@@ -15,6 +15,7 @@ import {
 import Header from "./Header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 function AddQuote() {
   const [quoteText, onChangeQuote] = useState("");
@@ -48,7 +49,7 @@ function AddQuote() {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView>  
       <KeyboardAvoidingView >
       <Modal visible={modalOpen} animationType="slide">
         <View style={tw`p-16 bg-gray-100`}>
