@@ -1,12 +1,15 @@
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import tw from 'tailwind-react-native-classnames'
+import React from "react";
+import { SafeAreaView, View } from "react-native";
+import tw from "tailwind-react-native-classnames";
+import Header from "../components/Header";
 
 function FavoritesScreen() {
-  return(
-      <SafeAreaView>
-          <Text style={tw`font-semibold p-10`}> This is FavoritesScreen</Text>
-      </SafeAreaView>
+  return (
+    <SafeAreaView>
+      <View style={tw`p-16 bg-gray-100`}>
+        <Header title="Favorites" />
+      </View>
+    </SafeAreaView>
   );
 }
 

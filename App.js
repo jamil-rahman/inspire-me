@@ -9,6 +9,7 @@ import FavoritesScreen from "./screens/FavoritesScreen";
 import MyInsightsScreen from "./screens/MyInsightsScreen";
 import tw from "tailwind-react-native-classnames";
 import {Ionicons} from 'react-native-vector-icons';
+import { StatusBar } from "expo-status-bar";
 
 // function HomeStackScreen() {
 //   return (
@@ -25,6 +26,7 @@ export default function App() {
   const Stack = createStackNavigator();
   return (
     <SafeAreaProvider>
+      <StatusBar hidden={true}/>
       <NavigationContainer>
         <KeyboardAvoidingView
           style={styles.container}
@@ -81,7 +83,7 @@ export default function App() {
               name="MyInsights"
               component={MyInsightsScreen}
               options={{
-                headerShown: true,
+                headerShown: false,
               }}
             />
           </Tab.Navigator>
