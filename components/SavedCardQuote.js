@@ -1,39 +1,17 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, ToastAndroid, Platform, AlertIOS, } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Text, Card, Icon } from "react-native-elements";
 import tw from "tailwind-react-native-classnames";
 import SentimentComponent from "./SentimentComponent";
 import Sentiment from "sentiment";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 //Snackbar does not work as Expo do not support snackbar
 
-function CardQuote(props) {
+function SavedCardQuote(props) {
   const sentiment = new Sentiment();
   const analysis = sentiment.analyze(props.quote);
 
-  const notifyMessage = (message) => {
-    if (Platform.OS === 'android') {
-      ToastAndroid.show(message, ToastAndroid.SHORT)
-    } else {
-      AlertIOS.alert(message);
-    }
-  }
-
-  const saveQuote = async () => {
-    const quote = [{ savedQuote: props.quote, savedAuthor: props.author }];
-
-    try {
-      await AsyncStorage.setItem("quote", JSON.stringify(quote));
-      // await AsyncStorage.setItem("author", JSON.stringify(author));
-
-      notifyMessage('Quote Saved!');
-      console.log(quote);
-      //console.log(author);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <View style={styles.container}>
       <Card
@@ -45,9 +23,7 @@ function CardQuote(props) {
         <Text style={styles.fonts}>- {props.author}</Text>
         <Card.Divider />
         <View style={tw`flex-row items-center justify-between`}>
-          <TouchableOpacity onPress={saveQuote}>
-            <Icon name="heart-outline" type="ionicon" />
-          </TouchableOpacity>
+            <Icon name="heart" type="ionicon" />
           <SentimentComponent sentimentValue={analysis.score} />
         </View>
       </Card>
@@ -65,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardQuote;
+export default SavedCardQuote;
