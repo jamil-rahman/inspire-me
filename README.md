@@ -1,4 +1,4 @@
-# UBER-CLONE
+# INSPIRE ME
 This a mobile application built using [React-Native](https://reactnative.dev/), bootstrapped with the [Expo CLI](https://docs.expo.dev/get-started/create-a-new-app/) and using [Type Fit's](https://type.fit/) Quotes APIs for the Quotes Generation. 
 
 
