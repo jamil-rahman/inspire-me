@@ -8,17 +8,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 function MyInsightsScreen() {
   const [savedquotes, setSavedQuotes] = useState([]);
 
-  const renderQuote = ({ item: { savedQuote, savedAuthor } }) => {
+  const renderQuote = ({ item: { myQuote, myAuthor } }) => {
     return (
       <SavedCardQuote
         style={styles.container}
-        quote={savedQuote}
-        author={savedAuthor}
-        sentimentValue={savedQuote}
+        quote={myQuote}
+        author={myAuthor}
+        sentimentValue={myQuote}
       />
     );
-  };
+  }; 
 
+//get custom quotes from async storage with different key 'myquote'
   const getSavedQuotes = async () => {
     try {
       const quotes = await AsyncStorage.getItem("myquote");
@@ -28,6 +29,7 @@ function MyInsightsScreen() {
     }
   };
 
+  //clear all data from async storage
   const clearAll = async () => {
     try {
       await AsyncStorage.clear();

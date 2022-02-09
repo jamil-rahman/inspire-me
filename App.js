@@ -11,13 +11,6 @@ import tw from "tailwind-react-native-classnames";
 import {Ionicons} from 'react-native-vector-icons';
 import { StatusBar } from "expo-status-bar";
 
-// function HomeStackScreen() {
-//   return (
-//     <HomeStack.Navigator>
-//      <HomeStack.Screen name="Home" component={HomeScreen} />             <HomeStack.Screen name="Details" component={DetailsScreen} />
-//     </HomeStack.Navigator>
-//    );
-//  }
 
 // https://medium.com/wesionary-team/combining-stack-navigator-with-tab-navigator-in-react-native-react-navigation-253656f45181
 const Tab = createBottomTabNavigator();

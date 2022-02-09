@@ -36,7 +36,6 @@ function CardQuote(props) {
       notifyMessage('Quote Saved!');
       return AsyncStorage.setItem("quote", JSON.stringify(favorites));
     });
-    //console.log(quote);
   };
   return (
     <View style={styles.container}>

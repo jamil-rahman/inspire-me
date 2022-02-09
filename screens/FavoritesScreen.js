@@ -4,6 +4,8 @@ import {
   View,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
+  Text
 } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import Header from "../components/Header";
@@ -24,6 +26,8 @@ function FavoritesScreen() {
     );
   };
 
+
+//get favorite quotes from the homescreen
   const getSavedQuotes = async () => {
     try {
       const quotes = await AsyncStorage.getItem("quote");
@@ -42,7 +46,7 @@ function FavoritesScreen() {
 
   const clearAll = async () => {
     try {
-      await AsyncStorage.clear()
+      await AsyncStorage.clear('quote')
     } catch(e) {
       // clear error
     }

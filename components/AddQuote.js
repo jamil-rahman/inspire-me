@@ -21,7 +21,6 @@ function AddQuote() {
   const [authorText, onChangeAuthor] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
 
-  //const quote = [{myQuote: quoteText, myAuthor: authorText}]
 
 
   const notifyMessage = (message) => {
@@ -31,9 +30,8 @@ function AddQuote() {
       AlertIOS.alert(message);
     }
   };
-  // console.log(quote);
-  // console.log(quoteText);
-  // console.log(authorText);
+
+
   const saveQuote = async () => {
     const quote = {myQuote: quoteText, myAuthor: authorText};
 
